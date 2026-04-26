@@ -1,0 +1,2205 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="무농약 친환경 베니하루카 세척 꿀고구마. 산지 직송, 숙성 단맛, 선물 패키지까지 한 번에 확인하세요."
+    />
+    <title>베니하루카 | 무농약 친환경 세척 꿀고구마</title>
+    <style>
+      :root {
+        --soil: #17120e;
+        --soil-2: #241812;
+        --ink: #29170f;
+        --paper: #fff9ed;
+        --paper-soft: #f7ecdc;
+        --cream: #efe0c2;
+        --muted: #8d7765;
+        --honey: #f2b84b;
+        --honey-2: #d8872f;
+        --leaf: #2f6655;
+        --leaf-soft: #dbe9d7;
+        --plum: #733954;
+        --rose: #b46268;
+        --clay: #a4522d;
+        --line: rgba(41, 23, 15, 0.14);
+        --shadow: 0 26px 80px rgba(41, 23, 15, 0.16);
+        --radius: 8px;
+        --max: 1180px;
+        --header: 72px;
+        --sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+        --serif: "Nanum Myeongjo", "AppleMyungjo", "Batang", Georgia, serif;
+      }
+
+      @property --score {
+        syntax: "<number>";
+        inherits: false;
+        initial-value: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--paper);
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 249, 237, 0.96), rgba(247, 236, 220, 0.9)),
+          var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        letter-spacing: 0;
+      }
+
+      body.is-locked {
+        overflow: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 1000;
+        padding: 10px 14px;
+        border-radius: 6px;
+        background: var(--soil);
+        color: var(--paper);
+        transform: translateY(-150%);
+        transition: transform 180ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 120;
+        width: 100%;
+        height: 3px;
+        transform-origin: left center;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, var(--leaf), var(--honey), var(--plum));
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 110;
+        width: 100%;
+        height: var(--header);
+        color: var(--paper);
+        transition:
+          background 220ms ease,
+          color 220ms ease,
+          box-shadow 220ms ease,
+          height 220ms ease;
+      }
+
+      .site-header.is-scrolled {
+        height: 64px;
+        background: rgba(255, 249, 237, 0.88);
+        color: var(--ink);
+        box-shadow: 0 12px 40px rgba(41, 23, 15, 0.08);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(100% - 40px, var(--max));
+        height: 100%;
+        margin: 0 auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+
+      .brand span {
+        color: currentcolor;
+        font-family: var(--sans);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        opacity: 0.72;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 10px 12px;
+        border-radius: 999px;
+        color: currentcolor;
+        font-size: 0.88rem;
+        font-weight: 700;
+        opacity: 0.82;
+        transition:
+          background 180ms ease,
+          opacity 180ms ease,
+          transform 180ms ease;
+      }
+
+      .nav-links a::after {
+        position: absolute;
+        right: 12px;
+        bottom: 7px;
+        left: 12px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentcolor;
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible,
+      .nav-links a.is-active {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .site-header.is-scrolled .nav-links a:hover,
+      .site-header.is-scrolled .nav-links a:focus-visible,
+      .site-header.is-scrolled .nav-links a.is-active {
+        background: rgba(47, 102, 85, 0.09);
+      }
+
+      .nav-links a.is-active::after {
+        transform: scaleX(1);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 0 15px;
+        border: 1px solid rgba(255, 249, 237, 0.42);
+        border-radius: 999px;
+        background: rgba(255, 249, 237, 0.16);
+        color: currentcolor;
+        font-weight: 800;
+        white-space: nowrap;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .nav-cta:hover,
+      .nav-cta:focus-visible {
+        background: var(--honey);
+        color: var(--ink);
+        transform: translateY(-2px);
+      }
+
+      .site-header.is-scrolled .nav-cta {
+        border-color: rgba(41, 23, 15, 0.12);
+        background: var(--soil);
+        color: var(--paper);
+      }
+
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: rgba(255, 249, 237, 0.16);
+        color: currentcolor;
+      }
+
+      .menu-toggle span,
+      .menu-toggle span::before,
+      .menu-toggle span::after {
+        display: block;
+        width: 18px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentcolor;
+        content: "";
+        transition:
+          transform 180ms ease,
+          opacity 180ms ease;
+      }
+
+      .menu-toggle span::before {
+        transform: translateY(-6px);
+      }
+
+      .menu-toggle span::after {
+        transform: translateY(4px);
+      }
+
+      .menu-toggle[aria-expanded="true"] span {
+        transform: rotate(45deg);
+      }
+
+      .menu-toggle[aria-expanded="true"] span::before {
+        opacity: 0;
+      }
+
+      .menu-toggle[aria-expanded="true"] span::after {
+        transform: translateY(-2px) rotate(90deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 105;
+        display: grid;
+        align-content: center;
+        gap: 16px;
+        padding: 88px 28px 32px;
+        background:
+          linear-gradient(rgba(23, 18, 14, 0.9), rgba(23, 18, 14, 0.94)),
+          url("assets/beniharuka/beniharuka-hero.jpg") center / cover;
+        color: var(--paper);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition:
+          opacity 220ms ease,
+          transform 220ms ease;
+      }
+
+      .mobile-menu[hidden] {
+        display: none;
+      }
+
+      .mobile-menu.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .mobile-menu a,
+      .mobile-menu button {
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 249, 237, 0.16);
+        background: transparent;
+        color: inherit;
+        text-align: left;
+        font-family: var(--serif);
+        font-size: clamp(2rem, 12vw, 4.5rem);
+        line-height: 0.96;
+      }
+
+      main {
+        overflow: clip;
+      }
+
+      section {
+        position: relative;
+        scroll-margin-top: 84px;
+      }
+
+      .hero {
+        min-height: 92svh;
+        display: grid;
+        align-items: end;
+        color: var(--paper);
+        isolation: isolate;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+        background: var(--soil);
+      }
+
+      .hero-media img {
+        height: 100%;
+        object-fit: cover;
+        object-position: 58% center;
+        transform: scale(1.04);
+        animation: heroDrift 18s ease-in-out infinite alternate;
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(90deg, rgba(23, 18, 14, 0.88) 0%, rgba(23, 18, 14, 0.62) 42%, rgba(23, 18, 14, 0.12) 100%),
+          linear-gradient(0deg, rgba(23, 18, 14, 0.48), transparent 40%);
+        content: "";
+      }
+
+      .hero-inner {
+        width: min(100% - 40px, var(--max));
+        margin: 0 auto;
+        padding: calc(var(--header) + 42px) 0 56px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--leaf);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero .eyebrow {
+        color: var(--honey);
+      }
+
+      .eyebrow::before {
+        width: 36px;
+        height: 1px;
+        background: currentcolor;
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .hero h1 {
+        max-width: 780px;
+        margin-top: 18px;
+        font-family: var(--serif);
+        font-size: clamp(3.5rem, 8.4vw, 8.8rem);
+        font-weight: 900;
+        line-height: 0.92;
+      }
+
+      .hero h1 em,
+      .section-title em {
+        color: var(--honey);
+        font-style: italic;
+      }
+
+      .hero-copy {
+        max-width: 560px;
+        margin-top: 24px;
+        color: rgba(255, 249, 237, 0.84);
+        font-size: clamp(1rem, 1.4vw, 1.18rem);
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .btn {
+        --btn-bg: var(--soil);
+        --btn-fg: var(--paper);
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 50px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--btn-bg);
+        color: var(--btn-fg);
+        font-weight: 900;
+        line-height: 1;
+        white-space: nowrap;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentcolor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 34px rgba(41, 23, 15, 0.18);
+      }
+
+      .btn:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      .btn-primary {
+        --btn-bg: var(--honey);
+        --btn-fg: var(--ink);
+      }
+
+      .btn-secondary {
+        --btn-bg: rgba(255, 249, 237, 0.1);
+        --btn-fg: var(--paper);
+        border-color: rgba(255, 249, 237, 0.38);
+      }
+
+      .btn-secondary:hover,
+      .btn-secondary:focus-visible {
+        background: rgba(255, 249, 237, 0.2);
+      }
+
+      .btn-leaf {
+        --btn-bg: var(--leaf);
+        --btn-fg: var(--paper);
+      }
+
+      .btn-ghost {
+        --btn-bg: transparent;
+        --btn-fg: var(--ink);
+        border-color: rgba(41, 23, 15, 0.16);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: min(620px, 100%);
+        margin-top: 38px;
+        border: 1px solid rgba(255, 249, 237, 0.18);
+        border-radius: var(--radius);
+        background: rgba(255, 249, 237, 0.08);
+        backdrop-filter: blur(14px);
+      }
+
+      .hero-stats div {
+        padding: 18px;
+      }
+
+      .hero-stats div + div {
+        border-left: 1px solid rgba(255, 249, 237, 0.18);
+      }
+
+      .hero-stats strong {
+        display: block;
+        color: var(--paper);
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 4vw, 3.2rem);
+        line-height: 1;
+      }
+
+      .hero-stats span {
+        display: block;
+        margin-top: 7px;
+        color: rgba(255, 249, 237, 0.72);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .scroll-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 34px;
+        color: rgba(255, 249, 237, 0.72);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .scroll-hint::after {
+        width: 68px;
+        height: 1px;
+        background: currentcolor;
+        content: "";
+        transform-origin: left center;
+        animation: hintLine 1500ms ease-in-out infinite;
+      }
+
+      .marquee {
+        display: flex;
+        overflow: hidden;
+        border-block: 1px solid rgba(41, 23, 15, 0.12);
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .marquee-track {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 22px;
+        min-width: max-content;
+        padding: 18px 11px;
+        animation: marquee 22s linear infinite;
+      }
+
+      .marquee span {
+        display: inline-flex;
+        align-items: center;
+        gap: 22px;
+        font-family: var(--serif);
+        font-size: clamp(1.05rem, 2.2vw, 2rem);
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .marquee span::after {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--rose);
+        content: "";
+      }
+
+      .section-pad {
+        padding: clamp(86px, 10vw, 142px) 0;
+      }
+
+      .container {
+        width: min(100% - 40px, var(--max));
+        margin: 0 auto;
+      }
+
+      .section-head {
+        display: grid;
+        gap: 18px;
+        max-width: 760px;
+      }
+
+      .section-head.center {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .section-head.center .eyebrow {
+        justify-content: center;
+      }
+
+      .section-title {
+        font-family: var(--serif);
+        font-size: clamp(2.3rem, 5.6vw, 5.4rem);
+        font-weight: 900;
+        line-height: 1.03;
+      }
+
+      .section-copy {
+        color: var(--muted);
+        font-size: clamp(1rem, 1.3vw, 1.16rem);
+        line-height: 1.8;
+      }
+
+      .story {
+        background: var(--paper);
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: clamp(32px, 6vw, 80px);
+        align-items: center;
+      }
+
+      .story-visual {
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .story-visual img {
+        height: 100%;
+        min-height: 520px;
+        object-fit: cover;
+        object-position: 66% center;
+        transform: scale(1.08);
+      }
+
+      .story-badge {
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        display: grid;
+        width: 136px;
+        height: 136px;
+        place-items: center;
+        border: 1px solid rgba(255, 249, 237, 0.46);
+        border-radius: 50%;
+        background: rgba(23, 18, 14, 0.72);
+        color: var(--paper);
+        text-align: center;
+        backdrop-filter: blur(12px);
+      }
+
+      .story-badge strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .story-badge span {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+
+      .quote {
+        margin-top: 32px;
+        padding-left: 20px;
+        border-left: 3px solid var(--honey);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 2vw, 1.72rem);
+        font-weight: 800;
+        line-height: 1.58;
+      }
+
+      .promise {
+        background:
+          linear-gradient(180deg, rgba(219, 233, 215, 0.56), rgba(255, 249, 237, 0.9)),
+          var(--paper);
+      }
+
+      .promise-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 44px;
+      }
+
+      .promise-card {
+        position: relative;
+        overflow: hidden;
+        padding: 24px;
+        border: 1px solid rgba(47, 102, 85, 0.16);
+        border-radius: var(--radius);
+        background: rgba(255, 249, 237, 0.72);
+        min-height: 260px;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .promise-card::before {
+        position: absolute;
+        right: -42px;
+        bottom: -42px;
+        width: 118px;
+        height: 118px;
+        border: 1px solid rgba(47, 102, 85, 0.18);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .promise-card:hover,
+      .promise-card:focus-within {
+        background: #ffffff;
+        box-shadow: var(--shadow);
+        transform: translateY(-8px);
+      }
+
+      .promise-icon {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--leaf);
+        color: var(--paper);
+        font-weight: 900;
+      }
+
+      .promise-card h3 {
+        margin-top: 28px;
+        font-size: 1.18rem;
+      }
+
+      .promise-card p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .sweetness {
+        background:
+          radial-gradient(circle at 78% 44%, rgba(242, 184, 75, 0.18), transparent 24rem),
+          linear-gradient(135deg, #17120e, #2b1612 56%, #17362e);
+        color: var(--paper);
+      }
+
+      .sweetness .section-copy,
+      .sweetness .eyebrow {
+        color: rgba(255, 249, 237, 0.78);
+      }
+
+      .sweetness-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.72fr);
+        gap: clamp(36px, 7vw, 92px);
+        align-items: center;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 34px;
+      }
+
+      .compare div {
+        padding: 16px;
+        border: 1px solid rgba(255, 249, 237, 0.16);
+        border-radius: var(--radius);
+        background: rgba(255, 249, 237, 0.08);
+      }
+
+      .compare strong {
+        display: block;
+        margin-top: 10px;
+        font-family: var(--serif);
+        font-size: 2rem;
+      }
+
+      .compare .is-best {
+        border-color: rgba(242, 184, 75, 0.76);
+        background: rgba(242, 184, 75, 0.16);
+      }
+
+      .gauge-wrap {
+        display: grid;
+        place-items: center;
+      }
+
+      .gauge {
+        width: min(420px, 100%);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, rgba(255, 249, 237, 0.08) 0 48%, transparent 49%),
+          conic-gradient(from -90deg, var(--honey) calc(var(--score, 0) * 1%), rgba(255, 249, 237, 0.14) 0);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 249, 237, 0.12),
+          0 30px 80px rgba(0, 0, 0, 0.25);
+        transition: --score 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .gauge-core {
+        display: grid;
+        width: 68%;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid rgba(255, 249, 237, 0.18);
+        border-radius: 50%;
+        background: rgba(23, 18, 14, 0.74);
+        text-align: center;
+        backdrop-filter: blur(12px);
+      }
+
+      .gauge-core strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: clamp(4.2rem, 9vw, 7rem);
+        line-height: 0.9;
+      }
+
+      .gauge-core span {
+        display: block;
+        margin-top: 14px;
+        color: rgba(255, 249, 237, 0.7);
+        font-weight: 800;
+      }
+
+      .process {
+        background: var(--paper);
+      }
+
+      .timeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 48px;
+      }
+
+      .timeline::before {
+        position: absolute;
+        top: 38px;
+        right: 10%;
+        left: 10%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--leaf), var(--honey), var(--plum));
+        content: "";
+      }
+
+      .step {
+        position: relative;
+        padding: 86px 20px 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.56);
+      }
+
+      .step-num {
+        position: absolute;
+        top: 18px;
+        left: 20px;
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--soil);
+        color: var(--paper);
+        font-weight: 900;
+      }
+
+      .step h3 {
+        font-size: 1.12rem;
+      }
+
+      .step p {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .shop {
+        background:
+          linear-gradient(180deg, rgba(255, 249, 237, 0.96), rgba(239, 224, 194, 0.7)),
+          var(--paper-soft);
+      }
+
+      .chooser {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 32px auto 0;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid rgba(41, 23, 15, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--ink);
+        font-weight: 800;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .chip:hover,
+      .chip:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .chip[aria-pressed="true"] {
+        border-color: rgba(47, 102, 85, 0.45);
+        background: var(--leaf);
+        color: var(--paper);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 42px;
+      }
+
+      .product-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(41, 23, 15, 0.12);
+        border-radius: var(--radius);
+        background: #fffdf8;
+        box-shadow: 0 12px 36px rgba(41, 23, 15, 0.07);
+        transition:
+          transform 210ms ease,
+          box-shadow 210ms ease,
+          border-color 210ms ease;
+      }
+
+      .product-card.is-recommended {
+        border-color: rgba(242, 184, 75, 0.9);
+        box-shadow: 0 24px 70px rgba(164, 82, 45, 0.18);
+      }
+
+      .product-card:hover,
+      .product-card:focus-within {
+        box-shadow: var(--shadow);
+        transform: translateY(-10px);
+      }
+
+      .product-media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        background: var(--cream);
+      }
+
+      .product-media img {
+        height: 100%;
+        object-fit: cover;
+        transition: transform 420ms ease;
+      }
+
+      .product-card:hover .product-media img {
+        transform: scale(1.06);
+      }
+
+      .badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(23, 18, 14, 0.76);
+        color: var(--paper);
+        font-size: 0.74rem;
+        font-weight: 900;
+        backdrop-filter: blur(8px);
+      }
+
+      .product-body {
+        padding: 22px;
+      }
+
+      .product-meta {
+        color: var(--leaf);
+        font-size: 0.8rem;
+        font-weight: 900;
+      }
+
+      .product-body h3 {
+        margin-top: 9px;
+        font-size: 1.34rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 16px 0 20px;
+      }
+
+      .tags span {
+        padding: 7px 9px;
+        border-radius: 999px;
+        background: rgba(47, 102, 85, 0.08);
+        color: var(--leaf);
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+
+      .price-line {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .price {
+        font-family: var(--serif);
+        font-size: 1.72rem;
+        font-weight: 900;
+      }
+
+      .unit {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .buy-button {
+        width: 100%;
+        margin-top: 18px;
+      }
+
+      .buy-button.is-added {
+        --btn-bg: var(--leaf);
+        --btn-fg: var(--paper);
+      }
+
+      .trust-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        margin-top: 22px;
+        border-radius: var(--radius);
+        background: rgba(41, 23, 15, 0.1);
+      }
+
+      .trust-strip div {
+        padding: 16px;
+        background: rgba(255, 253, 248, 0.72);
+      }
+
+      .trust-strip strong {
+        display: block;
+        font-size: 0.94rem;
+      }
+
+      .trust-strip span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .reviews {
+        background: var(--paper);
+      }
+
+      .review-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 24px;
+        align-items: end;
+      }
+
+      .rating {
+        text-align: right;
+      }
+
+      .rating strong {
+        display: block;
+        color: var(--plum);
+        font-family: var(--serif);
+        font-size: clamp(3rem, 6vw, 5.4rem);
+        line-height: 0.9;
+      }
+
+      .rating span {
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 42px;
+      }
+
+      .review-card {
+        display: grid;
+        gap: 22px;
+        min-height: 250px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fffdf8;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .review-card:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-6px);
+      }
+
+      .stars {
+        color: var(--honey-2);
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+      }
+
+      .review-card p {
+        color: #4f392c;
+        line-height: 1.75;
+      }
+
+      .reviewer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+      }
+
+      .avatar {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--plum);
+        color: var(--paper);
+        font-weight: 900;
+      }
+
+      .reviewer strong {
+        display: block;
+        font-size: 0.92rem;
+      }
+
+      .reviewer span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .final-cta {
+        background:
+          linear-gradient(rgba(23, 18, 14, 0.78), rgba(23, 18, 14, 0.88)),
+          url("assets/beniharuka/beniharuka-hero.jpg") center / cover;
+        color: var(--paper);
+        text-align: center;
+      }
+
+      .final-cta .section-head {
+        margin: 0 auto;
+      }
+
+      .final-cta .section-copy,
+      .final-cta .eyebrow {
+        color: rgba(255, 249, 237, 0.78);
+      }
+
+      .final-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      footer {
+        background: #120d0a;
+        color: rgba(255, 249, 237, 0.74);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.1fr repeat(3, minmax(120px, 0.6fr));
+        gap: 28px;
+        padding: 52px 0;
+      }
+
+      .footer-grid h3,
+      .footer-grid h4 {
+        color: var(--paper);
+      }
+
+      .footer-grid h3 {
+        font-family: var(--serif);
+        font-size: 1.46rem;
+      }
+
+      .footer-grid p,
+      .footer-grid a {
+        display: block;
+        margin-top: 10px;
+        color: rgba(255, 249, 237, 0.68);
+        line-height: 1.7;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0 28px;
+        border-top: 1px solid rgba(255, 249, 237, 0.12);
+        color: rgba(255, 249, 237, 0.52);
+        font-size: 0.82rem;
+      }
+
+      .toast {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 130;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: min(360px, calc(100vw - 36px));
+        padding: 14px 16px;
+        border-radius: var(--radius);
+        background: var(--soil);
+        color: var(--paper);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(14px);
+        transition:
+          opacity 180ms ease,
+          transform 180ms ease;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .bottom-bar {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        z-index: 90;
+        display: none;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid rgba(41, 23, 15, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 249, 237, 0.92);
+        box-shadow: 0 18px 48px rgba(41, 23, 15, 0.16);
+        backdrop-filter: blur(16px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(18px);
+        transition:
+          opacity 180ms ease,
+          transform 180ms ease;
+      }
+
+      .bottom-bar.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .bottom-bar strong {
+        display: block;
+        padding-left: 10px;
+        font-size: 0.92rem;
+      }
+
+      .bottom-bar span {
+        display: block;
+        padding-left: 10px;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      dialog {
+        width: min(520px, calc(100% - 28px));
+        padding: 0;
+        border: 0;
+        border-radius: var(--radius);
+        background: #fffdf8;
+        color: var(--ink);
+        box-shadow: 0 34px 100px rgba(0, 0, 0, 0.34);
+      }
+
+      dialog::backdrop {
+        background: rgba(23, 18, 14, 0.58);
+        backdrop-filter: blur(8px);
+      }
+
+      .dialog-body {
+        padding: 28px;
+      }
+
+      .dialog-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .dialog-top h2 {
+        font-family: var(--serif);
+        font-size: 2rem;
+        line-height: 1.1;
+      }
+
+      .dialog-top p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .close-btn {
+        display: grid;
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(41, 23, 15, 0.08);
+        color: var(--ink);
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 10px;
+        margin: 24px 0;
+      }
+
+      .contact-list a,
+      .contact-list div {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(47, 102, 85, 0.05);
+      }
+
+      .contact-list strong {
+        color: var(--leaf);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: enter 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .stagger > *:nth-child(2) {
+        animation-delay: 120ms;
+      }
+
+      .stagger > *:nth-child(3) {
+        animation-delay: 220ms;
+      }
+
+      .stagger > *:nth-child(4) {
+        animation-delay: 320ms;
+      }
+
+      .stagger > *:nth-child(5) {
+        animation-delay: 420ms;
+      }
+
+      @keyframes enter {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes heroDrift {
+        from {
+          transform: scale(1.04) translate3d(0, 0, 0);
+        }
+
+        to {
+          transform: scale(1.1) translate3d(-1.2%, -1%, 0);
+        }
+      }
+
+      @keyframes hintLine {
+        0%,
+        100% {
+          transform: scaleX(0.45);
+          opacity: 0.52;
+        }
+
+        50% {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @supports (animation-timeline: view()) {
+        .story-visual img {
+          animation: imagePan both linear;
+          animation-timeline: view();
+          animation-range: entry -10% exit 110%;
+        }
+
+        @keyframes imagePan {
+          from {
+            transform: scale(1.12) translateY(-5%);
+          }
+
+          to {
+            transform: scale(1.12) translateY(5%);
+          }
+        }
+      }
+
+      @media (max-width: 960px) {
+        :root {
+          --header: 66px;
+        }
+
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .hero {
+          min-height: 90svh;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(180deg, rgba(23, 18, 14, 0.82) 0%, rgba(23, 18, 14, 0.5) 42%, rgba(23, 18, 14, 0.76) 100%),
+            linear-gradient(90deg, rgba(23, 18, 14, 0.74), transparent);
+        }
+
+        .hero-media img {
+          object-position: 64% center;
+        }
+
+        .story-grid,
+        .sweetness-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .promise-grid,
+        .timeline,
+        .product-grid,
+        .review-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .timeline::before {
+          display: none;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .bottom-bar {
+          display: grid;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav-wrap,
+        .container,
+        .hero-inner {
+          width: min(100% - 28px, var(--max));
+        }
+
+        .hero-inner {
+          padding-bottom: 34px;
+        }
+
+        .hero h1 {
+          font-size: clamp(3.1rem, 17vw, 5.6rem);
+        }
+
+        .hero-copy {
+          max-width: 34rem;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          margin-top: 24px;
+        }
+
+        .hero-stats div {
+          padding: 12px 10px;
+        }
+
+        .hero-stats div + div {
+          border-top: 0;
+          border-left: 1px solid rgba(255, 249, 237, 0.18);
+        }
+
+        .hero-stats strong {
+          font-size: 1.55rem;
+        }
+
+        .hero-stats span {
+          font-size: 0.68rem;
+        }
+
+        .scroll-hint {
+          margin-top: 18px;
+        }
+
+        .promise-grid,
+        .timeline,
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-grid {
+          display: flex;
+          gap: 14px;
+          margin-right: -14px;
+          margin-left: -14px;
+          overflow-x: auto;
+          padding: 0 14px 14px;
+          scroll-padding: 14px;
+          scroll-snap-type: x mandatory;
+        }
+
+        .product-card {
+          flex: 0 0 min(86vw, 360px);
+          scroll-snap-align: center;
+        }
+
+        .compare,
+        .trust-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .review-head {
+          grid-template-columns: 1fr;
+        }
+
+        .rating {
+          text-align: left;
+        }
+
+        .footer-grid,
+        .footer-bottom {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        dialog {
+          width: 100%;
+          max-width: none;
+          margin: auto 0 0;
+          border-radius: 18px 18px 0 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 이동</a>
+    <div class="progress" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <div class="nav-wrap">
+        <a class="brand" href="#top" aria-label="베니하루카 홈으로 이동">베니하루카 <span>BENIHARUKA</span></a>
+        <nav class="nav-links" aria-label="주요 메뉴">
+          <a href="#story">Story</a>
+          <a href="#sweetness">Sweetness</a>
+          <a href="#shop">Shop</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="nav-cta" type="button" data-buy="hero">
+          바로 주문
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="mobile-menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="모바일 메뉴" hidden>
+      <a href="#story">Story</a>
+      <a href="#sweetness">Sweetness</a>
+      <a href="#shop">Shop</a>
+      <a href="#reviews">Reviews</a>
+      <button type="button" data-gift>Gift Contact</button>
+    </nav>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/beniharuka/beniharuka-hero.jpg" alt="" fetchpriority="high" />
+        </div>
+        <div class="hero-inner stagger">
+          <span class="eyebrow">Pesticide-free sweet potato</span>
+          <h1 id="hero-title">무농약<br />베니하루카 <em>꿀고구마</em></h1>
+          <p class="hero-copy">
+            황토밭에서 천천히 키우고, 수확 후 숙성해 단맛을 끌어올린 세척 고구마입니다.
+            흙 묻은 번거로움은 덜고, 정직한 단맛은 식탁까지 그대로 보냅니다.
+          </p>
+          <div class="hero-actions" aria-label="대표 행동">
+            <button class="btn btn-primary" type="button" data-buy="hero">
+              2026 햇수확 주문
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+            </button>
+            <a class="btn btn-secondary" href="#story">
+              농장 이야기
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14" /><path d="m19 12-7 7-7-7" /></svg>
+            </a>
+          </div>
+          <div class="hero-stats" aria-label="핵심 수치">
+            <div><strong>17°</strong><span>평균 당도 Brix</span></div>
+            <div><strong>90일</strong><span>저온 숙성 기준</span></div>
+            <div><strong>3代</strong><span>이어온 황토 재배</span></div>
+          </div>
+          <a class="scroll-hint" href="#story">Scroll to taste</a>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="브랜드 키워드">
+        <div class="marquee-track" aria-hidden="true">
+          <span>산지 직송</span><span>무농약 재배</span><span>세척 완료</span><span>90일 숙성</span><span>17 Brix</span><span>선물 포장</span>
+          <span>산지 직송</span><span>무농약 재배</span><span>세척 완료</span><span>90일 숙성</span><span>17 Brix</span><span>선물 포장</span>
+        </div>
+      </section>
+
+      <section class="story section-pad" id="story" aria-labelledby="story-title">
+        <div class="container story-grid">
+          <div class="story-visual reveal">
+            <img src="assets/beniharuka/beniharuka-hero.jpg" alt="세척한 베니하루카 고구마와 황금빛 속살" loading="lazy" />
+            <div class="story-badge"><div><strong>Since</strong><span>3대 농가</span></div></div>
+          </div>
+          <div class="reveal">
+            <div class="section-head">
+              <span class="eyebrow">Farm story</span>
+              <h2 class="section-title" id="story-title">흙에서 식탁까지,<br />단맛에는 <em>시간</em>이 필요합니다.</h2>
+              <p class="section-copy">
+                베니하루카는 수분이 많고 숙성될수록 꿀처럼 진해지는 품종입니다.
+                밭에서는 농약 부담을 줄인 친환경 방식으로 키우고, 수확 뒤에는 온도와 습도를 맞춰
+                속까지 촉촉한 단맛이 자리 잡을 때 발송합니다.
+              </p>
+            </div>
+            <p class="quote">
+              “빨리 파는 것보다 맛있을 때 보내는 것, 그게 저희 농장의 기준입니다.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="promise section-pad" aria-labelledby="promise-title">
+        <div class="container">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Four promises</span>
+            <h2 class="section-title" id="promise-title">고구마 하나에도<br />기준이 보이도록.</h2>
+            <p class="section-copy">구매 전 가장 궁금한 재배, 세척, 숙성, 배송 정보를 네 가지 약속으로 정리했습니다.</p>
+          </div>
+          <div class="promise-grid">
+            <article class="promise-card reveal">
+              <div class="promise-icon">01</div>
+              <h3>무농약 재배 원칙</h3>
+              <p>농약 사용을 배제한 재배 관리와 출하 전 선별로 가족 간식에 맞는 안심 기준을 지킵니다.</p>
+            </article>
+            <article class="promise-card reveal">
+              <div class="promise-icon">02</div>
+              <h3>황토밭 수분감</h3>
+              <p>배수가 좋은 흙에서 뿌리 모양과 밀도를 안정적으로 키워 군고구마 식감을 살립니다.</p>
+            </article>
+            <article class="promise-card reveal">
+              <div class="promise-icon">03</div>
+              <h3>저온 숙성 단맛</h3>
+              <p>수확 직후보다 숙성 후 당도가 오르는 품종 특성에 맞춰 출하 타이밍을 조절합니다.</p>
+            </article>
+            <article class="promise-card reveal">
+              <div class="promise-icon">04</div>
+              <h3>세척 후 산지 발송</h3>
+              <p>받자마자 보관하고 굽기 편하도록 흙먼지를 덜어낸 세척 상태로 안전하게 포장합니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sweetness section-pad" id="sweetness" aria-labelledby="sweetness-title">
+        <div class="container sweetness-layout">
+          <div class="reveal">
+            <div class="section-head">
+              <span class="eyebrow">The sweetness</span>
+              <h2 class="section-title" id="sweetness-title">17 Brix,<br />숫자로 확인하는 <em>꿀단맛</em>.</h2>
+              <p class="section-copy">
+                베니하루카의 매력은 구웠을 때 진해지는 밀도 높은 단맛입니다.
+                달콤하지만 물리지 않는 식감이 아이 간식, 부모님 선물, 운동 후 탄수화물 보충까지 넓게 어울립니다.
+              </p>
+            </div>
+            <div class="compare" aria-label="당도 비교">
+              <div><span>일반 고구마</span><strong>12°</strong></div>
+              <div class="is-best"><span>베니하루카</span><strong>17°</strong></div>
+              <div><span>사과 평균</span><strong>14°</strong></div>
+            </div>
+          </div>
+          <div class="gauge-wrap reveal">
+            <div class="gauge" data-gauge aria-label="베니하루카 평균 당도 17 Brix">
+              <div class="gauge-core">
+                <div><strong data-count="17">0</strong><span>Brix average</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="process section-pad" aria-labelledby="process-title">
+        <div class="container">
+          <div class="section-head center reveal">
+            <span class="eyebrow">From field to table</span>
+            <h2 class="section-title" id="process-title">수확부터 발송까지<br />보이는 네 단계.</h2>
+            <p class="section-copy">화려한 말보다 중요한 것은 반복 가능한 관리입니다. 매 주문은 같은 흐름으로 준비됩니다.</p>
+          </div>
+          <div class="timeline">
+            <article class="step reveal">
+              <span class="step-num">1</span>
+              <h3>선별 수확</h3>
+              <p>상처와 모양을 확인해 굽기 좋은 크기부터 나눕니다.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-num">2</span>
+              <h3>저온 숙성</h3>
+              <p>품종 특성에 맞춰 단맛이 안정되는 시간을 둡니다.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-num">3</span>
+              <h3>세척 포장</h3>
+              <p>흙먼지를 덜고 통풍과 충격을 고려해 박스에 담습니다.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-num">4</span>
+              <h3>산지 발송</h3>
+              <p>오전 주문은 가능한 빠르게 출고 흐름에 태웁니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop section-pad" id="shop" aria-labelledby="shop-title">
+        <div class="container">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Shop harvest</span>
+            <h2 class="section-title" id="shop-title">오늘의 수확에서<br />용도에 맞게 고르세요.</h2>
+            <p class="section-copy">2026년 모바일 쇼핑 흐름에 맞춰 선택을 줄이고, 목적별 추천을 바로 보여줍니다.</p>
+          </div>
+
+          <div class="chooser reveal" aria-label="상품 추천 선택">
+            <button class="chip" type="button" data-pick="daily" aria-pressed="true">혼자 먹는 간식</button>
+            <button class="chip" type="button" data-pick="family" aria-pressed="false">가족용 박스</button>
+            <button class="chip" type="button" data-pick="gift" aria-pressed="false">부모님 선물</button>
+          </div>
+
+          <div class="product-grid" aria-label="상품 목록">
+            <article class="product-card is-recommended reveal" data-product="daily">
+              <div class="product-media">
+                <img src="assets/beniharuka/beniharuka-hero.jpg" alt="데일리 3kg 베니하루카 세척 고구마" loading="lazy" />
+                <span class="badge">Daily</span>
+              </div>
+              <div class="product-body">
+                <span class="product-meta">3kg · 약 12-15개입</span>
+                <h3>데일리 세척 꿀고구마</h3>
+                <div class="tags"><span>소가구</span><span>에어프라이어</span><span>세척 완료</span></div>
+                <div class="price-line"><strong class="price">29,800원</strong><span class="unit">1kg 9,933원</span></div>
+                <button class="btn btn-leaf buy-button" type="button" data-buy="daily">담기</button>
+              </div>
+            </article>
+
+            <article class="product-card reveal" data-product="family">
+              <div class="product-media">
+                <img src="assets/beniharuka/beniharuka-hero.jpg" alt="패밀리 5kg 베니하루카 세척 고구마" loading="lazy" />
+                <span class="badge">Best</span>
+              </div>
+              <div class="product-body">
+                <span class="product-meta">5kg · 약 20-25개입</span>
+                <h3>패밀리 세척 꿀고구마</h3>
+                <div class="tags"><span>베스트</span><span>아이 간식</span><span>정기 구매</span></div>
+                <div class="price-line"><strong class="price">42,800원</strong><span class="unit">1kg 8,560원</span></div>
+                <button class="btn btn-leaf buy-button" type="button" data-buy="family">담기</button>
+              </div>
+            </article>
+
+            <article class="product-card reveal" data-product="gift">
+              <div class="product-media">
+                <img src="assets/beniharuka/beniharuka-hero.jpg" alt="선물용 프리미엄 베니하루카 고구마 박스" loading="lazy" />
+                <span class="badge">Gift</span>
+              </div>
+              <div class="product-body">
+                <span class="product-meta">5kg 대과 · 선물 포장</span>
+                <h3>프리미엄 선물 박스</h3>
+                <div class="tags"><span>대과 선별</span><span>감사 선물</span><span>메시지 카드</span></div>
+                <div class="price-line"><strong class="price">68,000원</strong><span class="unit">문의 가능</span></div>
+                <button class="btn btn-leaf buy-button" type="button" data-buy="gift">담기</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="trust-strip reveal" aria-label="구매 신뢰 정보">
+            <div><strong>오전 선별</strong><span>발송 전 마지막 상태 확인</span></div>
+            <div><strong>세척 상품</strong><span>흙먼지를 줄인 편한 보관</span></div>
+            <div><strong>선물 상담</strong><span>명절·기업 답례품 문의 가능</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews section-pad" id="reviews" aria-labelledby="reviews-title">
+        <div class="container">
+          <div class="review-head reveal">
+            <div class="section-head">
+              <span class="eyebrow">Real reviews</span>
+              <h2 class="section-title" id="reviews-title">먼저 맛본 분들의<br />다시 찾는 이유.</h2>
+            </div>
+            <div class="rating" aria-label="평균 별점 4.9, 누적 후기 2847개">
+              <strong>4.9</strong>
+              <span>2,847 Reviews</span>
+            </div>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card reveal">
+              <div class="stars" aria-label="별점 5점">★★★★★</div>
+              <p>아이들 간식으로 구워줬는데 속이 정말 촉촉해요. 세척이라 바로 굽기 편하고 단맛이 진해서 재구매했습니다.</p>
+              <div class="reviewer"><span class="avatar">김</span><div><strong>김OO</strong><span>서울 · 데일리 3kg</span></div></div>
+            </article>
+            <article class="review-card reveal">
+              <div class="stars" aria-label="별점 5점">★★★★★</div>
+              <p>부모님께 보내드렸는데 박스 상태도 깔끔하고 고구마 크기가 고르게 와서 선물용으로 만족했습니다.</p>
+              <div class="reviewer"><span class="avatar">박</span><div><strong>박OO</strong><span>부산 · 선물 박스</span></div></div>
+            </article>
+            <article class="review-card reveal">
+              <div class="stars" aria-label="별점 5점">★★★★★</div>
+              <p>에어프라이어에 40분 돌리면 꿀이 맺히는 느낌입니다. 밤에 먹어도 부담이 적고 보관 안내도 좋았어요.</p>
+              <div class="reviewer"><span class="avatar">이</span><div><strong>이OO</strong><span>대전 · 패밀리 5kg</span></div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta section-pad" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Fresh harvest delivery</span>
+            <h2 class="section-title" id="contact-title">흙의 시간이<br />식탁에 닿는 순간.</h2>
+            <p class="section-copy">오늘 주문 가능한 수량을 확인하고, 선물 포장이 필요하면 바로 상담으로 연결하세요.</p>
+          </div>
+          <div class="final-actions reveal">
+            <button class="btn btn-primary" type="button" data-buy="final">
+              지금 주문하기
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+            </button>
+            <button class="btn btn-secondary" type="button" data-gift>
+              선물 패키지 문의
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" /></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h3>베니하루카</h3>
+            <p>무농약 친환경 방식으로 키운 세척 꿀고구마를 산지에서 바로 전합니다.</p>
+          </div>
+          <div>
+            <h4>Shop</h4>
+            <a href="#shop">데일리 3kg</a>
+            <a href="#shop">패밀리 5kg</a>
+            <a href="#shop">선물 박스</a>
+          </div>
+          <div>
+            <h4>About</h4>
+            <a href="#story">농장 이야기</a>
+            <a href="#sweetness">당도 기준</a>
+            <a href="#reviews">구매 후기</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="tel:010-0000-0000">010-0000-0000</a>
+            <a href="mailto:farm@beniharuka.kr">farm@beniharuka.kr</a>
+            <a href="#contact" data-gift>선물 상담</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Beniharuka Farm. All rights reserved.</span>
+          <span>사업자등록번호 · 통신판매업 신고번호 · 개인정보처리방침</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite" data-toast>상품 페이지를 새 탭으로 열었습니다.</div>
+
+    <div class="bottom-bar" aria-label="모바일 빠른 주문">
+      <div><strong>오늘 발송 수량 확인</strong><span>세척 꿀고구마 3kg부터</span></div>
+      <button class="btn btn-primary" type="button" data-buy="sticky">주문</button>
+    </div>
+
+    <dialog id="gift-dialog" aria-labelledby="gift-title">
+      <div class="dialog-body">
+        <div class="dialog-top">
+          <div>
+            <h2 id="gift-title">선물 패키지 문의</h2>
+            <p>명절, 부모님 선물, 기업 답례품은 수량과 배송일을 확인한 뒤 가장 좋은 크기로 선별해 안내드립니다.</p>
+          </div>
+          <button class="close-btn" type="button" data-close aria-label="닫기">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" /></svg>
+          </button>
+        </div>
+        <div class="contact-list">
+          <a href="https://pf.kakao.com/" target="_blank" rel="noopener"><span>카카오톡 상담</span><strong>바로 연결</strong></a>
+          <a href="tel:010-0000-0000"><span>전화 문의</span><strong>010-0000-0000</strong></a>
+          <div><span>상담 시간</span><strong>평일 10:00-17:00</strong></div>
+        </div>
+        <button class="btn btn-leaf" type="button" data-buy="gift-dialog">선물용 상품 보기</button>
+      </div>
+    </dialog>
+
+    <script>
+      const STORE_URLS = {
+        hero: "https://smartstore.naver.com/",
+        sticky: "https://smartstore.naver.com/",
+        final: "https://smartstore.naver.com/",
+        daily: "https://smartstore.naver.com/",
+        family: "https://smartstore.naver.com/",
+        gift: "https://smartstore.naver.com/",
+        "gift-dialog": "https://smartstore.naver.com/"
+      };
+
+      const header = document.querySelector("[data-header]");
+      const progress = document.querySelector(".progress");
+      const menuButton = document.querySelector(".menu-toggle");
+      const mobileMenu = document.querySelector("#mobile-menu");
+      const toast = document.querySelector("[data-toast]");
+      const dialog = document.querySelector("#gift-dialog");
+      const gauge = document.querySelector("[data-gauge]");
+      const counter = document.querySelector("[data-count]");
+      const bottomBar = document.querySelector(".bottom-bar");
+      const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 2300);
+      };
+
+      const closeMenu = () => {
+        menuButton.setAttribute("aria-expanded", "false");
+        mobileMenu.classList.remove("is-open");
+        document.body.classList.remove("is-locked");
+        window.clearTimeout(closeMenu.timer);
+        closeMenu.timer = window.setTimeout(() => {
+          mobileMenu.hidden = true;
+        }, 220);
+      };
+
+      const setProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        progress.style.transform = `scaleX(${Math.max(0, Math.min(1, ratio))})`;
+        header.classList.toggle("is-scrolled", window.scrollY > 24);
+        bottomBar.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.58);
+      };
+
+      menuButton.addEventListener("click", () => {
+        const next = menuButton.getAttribute("aria-expanded") !== "true";
+        if (next) {
+          window.clearTimeout(closeMenu.timer);
+          mobileMenu.hidden = false;
+          menuButton.setAttribute("aria-expanded", "true");
+          document.body.classList.add("is-locked");
+          requestAnimationFrame(() => mobileMenu.classList.add("is-open"));
+        } else {
+          closeMenu();
+        }
+      });
+
+      mobileMenu.addEventListener("click", (event) => {
+        if (event.target.closest("a")) closeMenu();
+      });
+
+      document.querySelectorAll("[data-buy]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const key = button.dataset.buy;
+          const url = STORE_URLS[key] || STORE_URLS.hero;
+          if (button.classList.contains("buy-button")) {
+            button.classList.add("is-added");
+            button.textContent = "상품 페이지 열림";
+          }
+          showToast("상품 페이지를 새 탭으로 열었습니다.");
+          window.open(url, "_blank", "noopener");
+        });
+      });
+
+      document.querySelectorAll("[data-gift]").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          closeMenu();
+          dialog.showModal();
+        });
+      });
+
+      document.querySelector("[data-close]").addEventListener("click", () => dialog.close());
+
+      dialog.addEventListener("click", (event) => {
+        const rect = dialog.getBoundingClientRect();
+        const outside =
+          event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom;
+        if (outside) dialog.close();
+      });
+
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document.querySelectorAll(".chip").forEach((item) => item.setAttribute("aria-pressed", "false"));
+          chip.setAttribute("aria-pressed", "true");
+          const selected = chip.dataset.pick;
+          document.querySelectorAll(".product-card").forEach((card) => {
+            card.classList.toggle("is-recommended", card.dataset.product === selected);
+          });
+          document.querySelector(`[data-product="${selected}"]`)?.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
+          });
+        });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach((link) => {
+              link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+            });
+          });
+        },
+        { rootMargin: "-42% 0px -48% 0px" }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+
+      const gaugeObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          gauge.style.setProperty("--score", "68");
+          const target = Number(counter.dataset.count);
+          const started = performance.now();
+          const animate = (now) => {
+            const progressValue = Math.min(1, (now - started) / 1300);
+            const eased = 1 - Math.pow(1 - progressValue, 3);
+            counter.textContent = String(Math.round(target * eased));
+            if (progressValue < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+          gaugeObserver.disconnect();
+        },
+        { threshold: 0.4 }
+      );
+
+      gaugeObserver.observe(gauge);
+      window.addEventListener("scroll", setProgress, { passive: true });
+      window.addEventListener("resize", setProgress);
+      setProgress();
+    </script>
+  </body>
+</html>
