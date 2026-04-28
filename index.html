@@ -311,6 +311,36 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:767px){.gnb-logo{width:103px;height:70px;flex-basis:103px}}
 
+/* 1920 baseline image ratio: keep full media visible on desktop widths */
+@media(min-width:1024px){
+  .hero-bg{inset:0;display:flex;align-items:center;justify-content:center;background:#24180f}
+  .hero-video{object-fit:contain;background:#24180f}
+
+  .brand,
+  .brand-inner,
+  .brand-img{height:max(720px,50vw);min-height:max(720px,50vw)}
+  .brand-img-note{background-size:contain;background-repeat:no-repeat;background-position:center center;background-color:#ebe1d4}
+  .brand-img img{object-fit:contain;background:#ebe1d4}
+
+  .product{padding:0;min-height:max(700px,49.0104167vw)}
+  .product-inner{min-height:max(700px,49.0104167vw)}
+  .product-bg-img{object-fit:contain;object-position:center center}
+
+  .brix-vis{overflow:visible}
+  .brix-hero-img{right:0;width:clamp(620px,56.25vw,1280px);max-width:100%;object-fit:contain}
+
+  .cta{height:max(560px,36.4583333vw);min-height:max(560px,36.4583333vw);max-height:none;background-size:contain;background-repeat:no-repeat;background-position:center center;background-color:#fff}
+  .cta-inner{height:max(560px,36.4583333vw);min-height:max(560px,36.4583333vw)}
+}
+@media(min-width:1200px) and (max-width:1599px){
+  footer{padding:100px 56px 72px}
+  .foot-grid{grid-template-columns:minmax(320px,1.45fr) repeat(4,minmax(112px,1fr));column-gap:42px}
+  .foot-brand{max-width:440px}
+  .foot-logo{width:140px}
+  .foot-col h6{font-size:20px}
+  .foot-col li,.foot-info,.foot-btm .copyr,.foot-meta{font-size:13px}
+}
+
 /* Mobile layout repair */
 html,body{width:100%;max-width:100%;overflow-x:hidden}
 section,header,footer{max-width:100%}
