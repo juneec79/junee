@@ -56,6 +56,7 @@ img{display:block;max-width:100%}
 .rv{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:translateY(0)}
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+.st-enhanced .rv{transition:none}
 
 /* scroll progress */
 #spBar{position:fixed;top:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,var(--green-700),var(--green-400),var(--sweet-300));transform-origin:left;transform:scaleX(0);z-index:9999}
@@ -750,11 +751,87 @@ if (heroVideo) {
   heroVideo.play().catch(() => {});
 }
 
-/* ── Reveal IO ── */
-const rvIO = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('in'); rvIO.unobserve(e.target); }
-}), { threshold: .12, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+/* ── Section ScrollTrigger motion ── */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasScrollMotion = !!(window.gsap && window.ScrollTrigger && typeof ScrollTrigger.create === 'function' && !prefersReducedMotion);
+
+function revealFallback() {
+  const rvIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); rvIO.unobserve(e.target); }
+  }), { threshold: .12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+}
+
+function sectionReveal(trigger, targets, opts = {}) {
+  const root = typeof trigger === 'string' ? document.querySelector(trigger) : trigger;
+  if (!root) return;
+  const nodes = gsap.utils.toArray(targets, root).filter(Boolean);
+  if (!nodes.length) return;
+  gsap.set(nodes, { autoAlpha: 0, y: opts.y ?? 46, x: opts.x ?? 0, scale: opts.scale ?? 1, force3D: true });
+  gsap.to(nodes, {
+    autoAlpha: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    duration: opts.duration ?? 1,
+    ease: opts.ease || 'power3.out',
+    stagger: opts.stagger ?? .11,
+    clearProps: opts.clearProps || 'transform',
+    onComplete: () => nodes.forEach(node => node.classList.add('in')),
+    scrollTrigger: {
+      trigger: root,
+      start: opts.start || 'top 76%',
+      once: true
+    }
+  });
+}
+
+function imageReveal(trigger, target, opts = {}) {
+  const root = document.querySelector(trigger);
+  const el = document.querySelector(target);
+  if (!root || !el) return;
+  gsap.fromTo(el,
+    { autoAlpha: 0, x: opts.x ?? 36, y: opts.y ?? 0, scale: opts.scale ?? 1.015 },
+    {
+      autoAlpha: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      duration: opts.duration ?? 1.15,
+      ease: 'power3.out',
+      clearProps: 'transform',
+      onComplete: () => el.classList.add('in'),
+      scrollTrigger: { trigger: root, start: opts.start || 'top 72%', once: true }
+    }
+  );
+}
+
+if (hasScrollMotion) {
+  document.body.classList.add('st-enhanced');
+  document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+  const heroItems = gsap.utils.toArray('.hero .rv');
+  gsap.set(heroItems, { autoAlpha: 0, y: 28, force3D: true });
+  gsap.to(heroItems, {
+    autoAlpha: 1,
+    y: 0,
+    duration: .95,
+    stagger: .12,
+    ease: 'power3.out',
+    clearProps: 'transform',
+    onComplete: () => heroItems.forEach(node => node.classList.add('in'))
+  });
+  sectionReveal('.brand', '.brand-copy .eyebrow, .brand-copy h2, .brand-copy .divider, .brand-copy p', { y: 52, stagger: .12 });
+  imageReveal('.brand', '.brand-img', { x: 54, scale: 1.02 });
+  sectionReveal('.product', '.product-copy .eyebrow, .product-copy h2, .product-copy .product-sub, .product-copy .divider, .product-copy .feat, .product-copy .p-cta', { y: 48, stagger: .09 });
+  sectionReveal('.promise', '.promise-head .eyebrow, .promise-head h2, .promise-head p, .pc', { y: 54, stagger: .1 });
+  sectionReveal('.brix', '.brix-inner > div:first-child .eyebrow, .brix-num-wrap, .brix h2, .brix-desc, .brix .divider, .brix-bars', { y: 48, stagger: .1 });
+  imageReveal('.brix', '.brix-vis', { x: 70, scale: 1.01 });
+  sectionReveal('.review', '.review-head .rv', { y: 48, stagger: .12 });
+  sectionReveal('.cta', '.cta-copy .eyebrow, .cta-copy h2, .cta-copy p, .cta-copy .cta-btns', { y: 44, stagger: .11 });
+  sectionReveal('footer', '.foot-logo, .foot-address, .foot-info, .foot-col, .foot-btm', { y: 36, stagger: .08, start: 'top 82%' });
+} else {
+  revealFallback();
+}
 
 /* ── Brand story 클립 와이프 ── */
 const bImg = document.querySelector('.brand-img');
@@ -842,6 +919,25 @@ setInterval(() => { if (!rAuto) return; rIdx=(rIdx+1)%TOT; renderRev(); }, 6000)
 document.getElementById('rPrev').onclick = () => { rIdx=(rIdx-1+TOT)%TOT; rAuto=false; renderRev(); };
 document.getElementById('rNext').onclick = () => { rIdx=(rIdx+1)%TOT; rAuto=false; renderRev(); };
 renderRev();
+if (hasScrollMotion) {
+  const track = document.getElementById('revTrack');
+  const cards = () => gsap.utils.toArray('.rev-card', track);
+  gsap.set(cards(), { autoAlpha: 0, y: 38, force3D: true });
+  ScrollTrigger.create({
+    trigger: '.review',
+    start: 'top 74%',
+    once: true,
+    onEnter: () => gsap.to(cards(), {
+      autoAlpha: 1,
+      y: 0,
+      duration: .82,
+      stagger: .09,
+      ease: 'power3.out',
+      clearProps: 'transform'
+    })
+  });
+  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+}
 
 /* ── Review 별 폭죽 + 평점 카운터 ── */
 const revSec = document.querySelector('.review');
