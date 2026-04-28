@@ -235,8 +235,8 @@ img{display:block;max-width:100%}
 /* 카드 */
 @keyframes rFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .rev-track{max-width:1600px;margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(3,1fr);gap:22px;animation:rFade .5s var(--ease) both}
-.rev-card{background:#fff;border-radius:var(--r-md);padding:30px 26px;box-shadow:none;border:1px solid var(--ink-200);display:flex;flex-direction:column;gap:14px;transition:transform .36s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);transform-style:preserve-3d;will-change:transform;position:relative}
-.rev-card:hover{transform:translateY(-14px) scale(1.055);box-shadow:none;border-color:var(--ink-200);z-index:3}
+.rev-card{background:#fff;border-radius:var(--r-md);padding:30px 26px;box-shadow:none!important;filter:none!important;border:1px solid var(--ink-200);display:flex;flex-direction:column;gap:14px;transition:transform .16s cubic-bezier(.2,.8,.2,1),border-color .16s ease;transform:translate3d(0,0,0);backface-visibility:hidden;will-change:transform;position:relative}
+.rev-card:hover{transform:translate3d(0,-14px,0) scale(1.055);box-shadow:none!important;filter:none!important;border-color:var(--ink-200);z-index:3}
 .rev-stars{color:var(--green-700);font-size:15px;letter-spacing:.1em}
 .rev-qmark{font-family:Georgia,serif;font-size:30px;color:var(--ink-300);line-height:.35;margin-top:6px}
 .rev-txt{font-family:var(--font-title);font-size:24px;font-weight:700;color:var(--ink-900);line-height:1.45;white-space:pre-line;min-height:88px;letter-spacing:0}
@@ -718,8 +718,6 @@ function renderRev() {
     `<span class="rdot${i===rIdx?' on':''}" data-i="${i}"></span>`).join('');
   document.querySelectorAll('.rdot').forEach(d =>
     d.addEventListener('click', () => { rIdx=+d.dataset.i; rAuto=false; renderRev(); }));
-  // tilt
-  track.querySelectorAll('.rev-card').forEach(applyTilt);
 }
 setInterval(() => { if (!rAuto) return; rIdx=(rIdx+1)%TOT; renderRev(); }, 6000);
 document.getElementById('rPrev').onclick = () => { rIdx=(rIdx-1+TOT)%TOT; rAuto=false; renderRev(); };
@@ -733,27 +731,6 @@ new IntersectionObserver(es => es.forEach(e => {
   revSec.classList.add('rin');
   let rv=0; const rt=setInterval(()=>{rv+=.12;if(rv>=4.9){rv=4.9;clearInterval(rt)}document.getElementById('rNum').textContent=rv.toFixed(1)},26);
 }), { threshold: .3 }).observe(revSec);
-
-/* ── Review 3D 틸트 ── */
-function applyTilt(card) {
-  if (card._t) return; card._t = true;
-  let tx=0,ty=0,ctx=0,cty=0,run=false,hovering=false;
-  card.addEventListener('mouseenter', () => { hovering=true; if(!run){run=true;step();} }, { passive: true });
-  card.addEventListener('mousemove', e => {
-    const r=card.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;
-    if(!run){run=true;step();}
-  }, { passive: true });
-  card.addEventListener('mouseleave', () => { hovering=false;tx=0;ty=0; });
-  function step() {
-    ctx+=(tx-ctx)*.1;cty+=(ty-cty)*.1;
-    const active=hovering||Math.abs(ctx)+Math.abs(cty)>.02;
-    card.style.transform=`translateY(${active?'-14px':'0'}) scale(${active?'1.055':'1'}) rotateY(${ctx*10}deg) rotateX(${-cty*10}deg)`;
-    if(hovering||Math.abs(tx)>.005||Math.abs(ty)>.005||Math.abs(ctx)>.005||Math.abs(cty)>.005) requestAnimationFrame(step);
-    else{card.style.transform='';run=false;}
-  }
-}
-new MutationObserver(()=>document.querySelectorAll('.rev-card').forEach(applyTilt))
-  .observe(document.getElementById('revTrack'),{childList:true});
 
 /* ── CTA 글자 분리 + 마그네틱 ── */
 const ctaH2 = document.getElementById('ctaH2');
