@@ -112,7 +112,7 @@ img{display:block;max-width:100%}
 .hero-pt span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,235,180,.9),transparent 70%);filter:blur(.5px);opacity:0;animation:ptF linear infinite}
 @keyframes ptF{0%{transform:translateY(105vh) scale(.5);opacity:0}10%{opacity:.9}50%{transform:translateY(50vh) translateX(18px) scale(1);opacity:1}90%{opacity:.7}100%{transform:translateY(-8vh) translateX(-10px) scale(.6);opacity:0}}
 /* 마우스 빛 */
-.hero-light{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,215,140,.18) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:2;mix-blend-mode:screen;transform:translate(-50%,-50%);left:-9999px;top:-9999px}
+.hero-light{display:none;position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,215,140,.18) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:2;mix-blend-mode:screen;transform:translate(-50%,-50%);left:-9999px;top:-9999px}
 /* 콘텐츠 */
 .hero-inner{position:relative;z-index:3;height:100%;max-width:1600px;margin:0 auto;padding:0 var(--gutter);display:flex;flex-direction:column;justify-content:center}
 .hero-eyebrow{display:inline-flex;align-items:center;justify-content:flex-start;gap:12px;padding:0;background:transparent;border:0;border-radius:0;font-family:'Nanum Pen Script',cursive;font-size:30px;font-weight:400;line-height:1;color:#fff;letter-spacing:.04em;width:fit-content;margin-bottom:32px;text-align:left}
@@ -166,14 +166,14 @@ img{display:block;max-width:100%}
 .promise-grid{max-width:1600px;margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink-200)}
 .pc{padding:52px 28px;border-right:1px solid var(--ink-200);text-align:center;position:relative;overflow:hidden;transition:background .3s var(--ease)}
 .pc:last-child{border-right:none}
-.pc:hover{background:var(--green-50)}
+.pc:hover{background:var(--paper)}
 /* glow */
-.pc-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(122,157,79,.15),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;pointer-events:none;left:var(--gx,50%);top:var(--gy,50%)}
+.pc-glow{display:none}
 .pc:hover .pc-glow{opacity:1}
 /* icon */
 .ic-wrap{width:132px;height:132px;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;background:transparent;border:none;transition:transform .3s var(--ease);position:relative;z-index:1}
 .ic-wrap img{width:100%;height:100%;object-fit:contain;display:block}
-.pc:hover .ic-wrap{background:transparent;transform:translateY(-5px) scale(1.05)}
+.pc:hover .ic-wrap{background:transparent;transform:none}
 .pc h4{font-family:var(--font-title);font-size:20px;font-weight:400;color:var(--ink-900);margin-bottom:12px;position:relative;z-index:1}
 .pc p{font-size:14px;line-height:1.7;color:var(--ink-600);white-space:pre-line;position:relative;z-index:1}
 /* leaf deco */
@@ -273,8 +273,8 @@ img{display:block;max-width:100%}
 .cta-div .cl{flex:1;height:1px;background:var(--ink-200)}
 
 /* ════════════ FOOTER ════════════ */
-footer{background:#f9f9f9;padding:124px clamp(56px,4.1667vw,80px) 92px;border-top:0;min-height:740px}
-.foot-grid{display:grid;grid-template-columns:minmax(420px,1fr) repeat(3,130px) 260px;column-gap:84px;align-items:start;width:100%;max-width:1760px;margin:0 auto}
+footer{background:#f9f9f9;padding:124px 80px 104px;border-top:0;min-height:auto}
+.foot-grid{display:grid;grid-template-columns:minmax(420px,1fr) repeat(3,130px) 260px;column-gap:84px;align-items:start;width:100%;max-width:none;margin:0}
 .foot-brand{max-width:560px}
 .foot-logo{width:157px;height:auto;display:block;margin-bottom:56px}
 .foot-address{font-size:16px;line-height:1.65;font-weight:700;color:#111;margin-bottom:46px}
@@ -288,16 +288,16 @@ footer{background:#f9f9f9;padding:124px clamp(56px,4.1667vw,80px) 92px;border-to
 .foot-social{display:flex;gap:14px;margin-top:38px}
 .foot-social a{width:40px;height:40px;border-radius:50%;display:block}
 .foot-social img{width:40px;height:40px;display:block}
-.foot-btm{max-width:1760px;margin:86px auto 0;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.foot-btm{max-width:none;margin:86px 0 0;display:flex;justify-content:space-between;align-items:center;gap:24px}
 .foot-btm .copyr{font-size:14px;color:#111;white-space:nowrap}
 .foot-meta{display:flex;gap:44px;font-size:14px;color:#999;flex-wrap:wrap;justify-content:flex-end}
 .foot-meta a{color:#999}
 .foot-meta a:hover{color:#111}
 
 /* 반응형 */
-@media(max-width:1199px){:root{--gutter:80px;--pad:100px}.gnb-nav{gap:40px}.promise-grid{grid-template-columns:repeat(2,1fr)}.pc:nth-child(2){border-right:none}.pc:nth-child(1),.pc:nth-child(2){border-bottom:1px solid var(--ink-200)}footer{padding:96px 64px 72px}.foot-grid{grid-template-columns:minmax(360px,1.5fr) repeat(2,minmax(140px,1fr));gap:48px}.foot-brand{grid-row:span 2}.foot-btm{margin-top:70px}}
-@media(max-width:1023px){.gnb-nav{display:none}.brand-inner{grid-template-columns:1fr;gap:0;min-height:auto}.brand-copy{padding:88px var(--gutter)}.brand-img{min-height:420px}.product-inner,.brix-inner,.cta-inner{grid-template-columns:1fr;gap:48px}.product{background-position:62% center}.product-copy{padding:0}.product-vis{min-height:120px;justify-content:flex-start}.p-cta{margin:64px 0 0}.cta-art{justify-content:flex-start}.cta-art img{width:min(100%,340px);max-height:300px}.review-head{grid-template-columns:1fr}.rev-track{grid-template-columns:1fr}footer{padding:80px 48px 56px}.foot-grid{grid-template-columns:1fr 1fr;gap:44px}.foot-brand{grid-column:1/-1;max-width:620px}.foot-logo{margin-bottom:44px}.foot-btm{align-items:flex-start;flex-direction:column}.foot-meta{justify-content:flex-start;gap:24px}}
-@media(max-width:767px){:root{--gutter:24px;--pad:80px}.gnb-inner{padding-left:80px;padding-right:80px}.promise-grid{grid-template-columns:1fr;padding:0 var(--gutter)}.promise-head{padding:0 var(--gutter)}.brix-inner{padding:0 var(--gutter)}.cta-inner,.cta-div{padding:0 var(--gutter)}.cta-art img{width:min(100%,280px);max-height:250px}footer{padding:64px var(--gutter) 42px;min-height:auto}.foot-grid{grid-template-columns:1fr;gap:34px}.foot-logo{width:140px;margin-bottom:36px}.foot-address{margin-bottom:30px}.foot-btm{margin-top:48px}.rev-track{padding:0 var(--gutter)}.rev-ctrl{padding:28px var(--gutter) 0}}
+@media(max-width:1199px){:root{--gutter:80px;--pad:100px}.gnb-nav{gap:40px}.promise-grid{grid-template-columns:repeat(2,1fr)}.pc:nth-child(2){border-right:none}.pc:nth-child(1),.pc:nth-child(2){border-bottom:1px solid var(--ink-200)}footer{padding:96px 80px 104px}.foot-grid{grid-template-columns:minmax(360px,1.5fr) repeat(2,minmax(140px,1fr));gap:48px}.foot-brand{grid-row:span 2}.foot-btm{margin-top:70px}}
+@media(max-width:1023px){.gnb-nav{display:none}.brand-inner{grid-template-columns:1fr;gap:0;min-height:auto}.brand-copy{padding:88px var(--gutter)}.brand-img{min-height:420px}.product-inner,.brix-inner,.cta-inner{grid-template-columns:1fr;gap:48px}.product{background-position:62% center}.product-copy{padding:0}.product-vis{min-height:120px;justify-content:flex-start}.p-cta{margin:64px 0 0}.cta-art{justify-content:flex-start}.cta-art img{width:min(100%,340px);max-height:300px}.review-head{grid-template-columns:1fr}.rev-track{grid-template-columns:1fr}footer{padding:80px 80px 104px}.foot-grid{grid-template-columns:1fr 1fr;gap:44px}.foot-brand{grid-column:1/-1;max-width:620px}.foot-logo{margin-bottom:44px}.foot-btm{align-items:flex-start;flex-direction:column}.foot-meta{justify-content:flex-start;gap:24px}}
+@media(max-width:767px){:root{--gutter:24px;--pad:80px}.gnb-inner{padding-left:80px;padding-right:80px}.promise-grid{grid-template-columns:1fr;padding:0 var(--gutter)}.promise-head{padding:0 var(--gutter)}.brix-inner{padding:0 var(--gutter)}.cta-inner,.cta-div{padding:0 var(--gutter)}.cta-art img{width:min(100%,280px);max-height:250px}footer{padding:64px 80px 104px;min-height:auto}.foot-grid{grid-template-columns:1fr;gap:34px}.foot-logo{width:140px;margin-bottom:36px}.foot-address{margin-bottom:30px}.foot-btm{margin-top:48px}.rev-track{padding:0 var(--gutter)}.rev-ctrl{padding:28px var(--gutter) 0}}
 
 .gnb-logo{position:relative;display:block;width:115px;height:77px;flex:0 0 115px}
 .gnb-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .25s var(--ease),transform .25s var(--ease)}
@@ -305,10 +305,12 @@ footer{background:#f9f9f9;padding:124px clamp(56px,4.1667vw,80px) 92px;border-to
 .logo-color{opacity:0}
 .gnb.s .logo-white{opacity:0}
 .gnb.s .logo-color{opacity:1}
-.hero-bg{inset:-28px}
+.hero-bg{inset:0;background:#24180f}
 .hero-bg::before{display:none}
 .hero-bg::after{z-index:1;pointer-events:none}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden;will-change:transform;opacity:1;transition:none}
+.hero.video-ready .hero-video{opacity:1}
+.hero-pt{display:none!important}
 @media(max-width:767px){.gnb-logo{width:103px;height:70px;flex-basis:103px}}
 
 /* 1920 baseline ratio. Product/CTA keep full images; hero/brix keep the intended full-bleed impact. */
@@ -334,7 +336,7 @@ footer{background:#f9f9f9;padding:124px clamp(56px,4.1667vw,80px) 92px;border-to
   .cta-inner{height:max(560px,36.4583333vw);min-height:max(560px,36.4583333vw)}
 }
 @media(min-width:1200px) and (max-width:1599px){
-  footer{padding:100px 56px 72px}
+  footer{padding:100px 80px 104px}
   .foot-grid{grid-template-columns:minmax(320px,1.45fr) repeat(4,minmax(112px,1fr));column-gap:42px;max-width:none}
   .foot-brand{max-width:440px}
   .foot-logo{width:140px}
@@ -426,7 +428,7 @@ section,header,footer{max-width:100%}
   .cta-btns{gap:10px}
   .cta-btns .btn{padding:14px 20px;font-size:14px}
 
-  footer{padding:64px var(--gutter) 42px;min-height:auto}
+  footer{padding:64px 80px 104px;min-height:auto}
   .foot-grid{grid-template-columns:minmax(0,1fr);gap:34px;column-gap:0;width:100%;min-width:0}
   .foot-brand,.foot-col,.foot-address,.foot-info,.foot-info .nowrap{width:100%;max-width:100%;min-width:0}
   .foot-col{display:none}
@@ -702,11 +704,13 @@ window.addEventListener('scroll', () => gnb.classList.toggle('s', scrollY > 30),
 
 /* ── 파티클 ── */
 const pt = document.getElementById('heroPt');
-for (let i = 0; i < 12; i++) {
-  const s = document.createElement('span');
-  const sz = 4 + Math.random() * 8;
-  s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${12+Math.random()*10}s;animation-delay:${-Math.random()*12}s`;
-  pt.appendChild(s);
+if (pt && !document.querySelector('.hero-video')) {
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement('span');
+    const sz = 4 + Math.random() * 8;
+    s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${12+Math.random()*10}s;animation-delay:${-Math.random()*12}s`;
+    pt.appendChild(s);
+  }
 }
 
 /* ── Hero h1 글자 분리 ── */
@@ -729,34 +733,21 @@ if (h1) {
   h1.innerHTML = w.innerHTML;
 }
 
-/* ── Hero 마우스 빛 + 패럴랙스 ── */
+/* ── Hero video 안정화 ── */
 const heroEl = document.querySelector('.hero');
-const hLight = document.getElementById('hLight');
 const heroBg = document.querySelector('.hero-bg');
 const heroVideo = document.querySelector('.hero-video');
-let phx=0,phy=0,chx=0,chy=0;
-heroEl.addEventListener('mousemove', e => {
-  const r = heroEl.getBoundingClientRect();
-  hLight.style.left = (e.clientX - r.left) + 'px';
-  hLight.style.top  = (e.clientY - r.top)  + 'px';
-  if (!heroVideo) {
-    phx = (e.clientX / innerWidth  - .5) * 20;
-    phy = (e.clientY / innerHeight - .5) * 14;
-  }
-}, { passive: true });
-heroEl.addEventListener('mouseleave', () => { hLight.style.left = '-9999px'; phx=0; phy=0; });
+if (heroBg) heroBg.style.transform = 'none';
 if (heroVideo) {
+  const markVideoReady = () => heroEl && heroEl.classList.add('video-ready');
   heroVideo.muted = true;
   heroVideo.playsInline = true;
   heroVideo.setAttribute('playsinline', '');
+  heroVideo.setAttribute('preload', 'auto');
+  heroVideo.addEventListener('loadeddata', markVideoReady, { once: true });
+  heroVideo.addEventListener('canplay', markVideoReady, { once: true });
+  if (heroVideo.readyState >= 2) markVideoReady();
   heroVideo.play().catch(() => {});
-  heroBg.style.transform = 'none';
-} else {
-  (function pl() {
-    chx += (phx - chx) * .055; chy += (phy - chy) * .055;
-    heroBg.style.transform = `translate(${chx}px,${chy}px)`;
-    requestAnimationFrame(pl);
-  })();
 }
 
 /* ── Reveal IO ── */
@@ -769,31 +760,17 @@ document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
 const bImg = document.querySelector('.brand-img');
 new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) bImg.classList.add('in'); }), { threshold: .2 }).observe(bImg);
 
-/* ── Product 3D 틸트 ── */
+/* ── Product static visual ── */
 const pv = document.getElementById('prodVis');
-let pvx=0,pvy=0,cpvx=0,cpvy=0;
-pv.addEventListener('mousemove', e => {
-  const r = pv.getBoundingClientRect();
-  pvx = ((e.clientX-r.left)/r.width  - .5)*2;
-  pvy = ((e.clientY-r.top) /r.height - .5)*2;
-}, { passive: true });
-pv.addEventListener('mouseleave', () => { pvx=0; pvy=0; });
-(function pvl() {
-  cpvx += (pvx-cpvx)*.08; cpvy += (pvy-cpvy)*.08;
+if (pv) {
   const bi = pv.querySelector('.p-img'), bx = pv.querySelector('.p-box');
-  if (bi) bi.style.transform = `rotateY(${cpvx*6}deg) rotateX(${-cpvy*4}deg)`;
-  if (bx) bx.style.transform = `rotateY(${cpvx*9}deg) rotateX(${-cpvy*6}deg) translateZ(18px)`;
-  requestAnimationFrame(pvl);
-})();
+  if (bi) bi.style.transform = 'none';
+  if (bx) bx.style.transform = 'none';
+}
 
-/* ── Promise 글로우 + SVG 드로우 ── */
+/* ── Promise SVG 드로우 ── */
 document.querySelectorAll('.pc').forEach(card => {
   card.style.position = 'relative';
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--gx', (e.clientX-r.left)+'px');
-    card.style.setProperty('--gy', (e.clientY-r.top)+'px');
-  }, { passive: true });
   new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) card.classList.add('pin'); }), { threshold: .3 }).observe(card);
 });
 
@@ -874,7 +851,7 @@ new IntersectionObserver(es => es.forEach(e => {
   let rv=0; const rt=setInterval(()=>{rv+=.12;if(rv>=4.9){rv=4.9;clearInterval(rt)}document.getElementById('rNum').textContent=rv.toFixed(1)},26);
 }), { threshold: .3 }).observe(revSec);
 
-/* ── CTA 글자 분리 + 마그네틱 ── */
+/* ── CTA 글자 분리 ── */
 const ctaH2 = document.getElementById('ctaH2');
 const ctaSec = document.querySelector('.cta');
 if (ctaH2) {
@@ -884,13 +861,6 @@ if (ctaH2) {
   });
   new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)ctaSec.classList.add('cin')}),{threshold:.3}).observe(ctaSec);
 }
-[document.getElementById('bS'),document.getElementById('bG')].forEach(btn=>{
-  if(!btn)return;
-  let bx=0,by=0,cbx=0,cby=0;
-  btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();bx=(e.clientX-r.left-r.width/2)*.32;by=(e.clientY-r.top-r.height/2)*.32},{passive:true});
-  btn.addEventListener('mouseleave',()=>{bx=0;by=0;});
-  (function ml(){cbx+=(bx-cbx)*.13;cby+=(by-cby)*.13;btn.style.transform=`translate(${cbx}px,${cby}px)`;requestAnimationFrame(ml);})();
-});
 
 </script>
 </body>
