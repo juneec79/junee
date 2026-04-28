@@ -310,6 +310,101 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
 .hero-bg::after{z-index:1;pointer-events:none}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:767px){.gnb-logo{width:103px;height:70px;flex-basis:103px}}
+
+/* Mobile layout repair */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+section,header,footer{max-width:100%}
+@media(max-width:767px){
+  html,body{min-width:0}
+  section{scroll-margin-top:96px}
+  .wrap,.container,.hero-inner,.product-inner,.promise-head,.promise-grid,.brix-inner,.review-head,.rev-track,.rev-ctrl,.cta-inner,.cta-div{padding-left:var(--gutter);padding-right:var(--gutter);max-width:100%;min-width:0}
+  .hero h1,.brand h2,.product h2,.promise-head h2,.brix h2,.review-head h2,.cta h2{word-break:keep-all;overflow-wrap:normal}
+
+  .gnb{padding:16px 0}
+  .gnb.s{padding:8px 0}
+  .gnb-inner{width:100%;max-width:100%;padding:0 20px;gap:12px;min-width:0}
+  .gnb-logo{width:104px;height:70px;flex:0 0 104px}
+  .gnb-actions{gap:8px;flex:0 0 auto}
+  .gnb-icon{width:40px;height:40px;box-shadow:0 5px 14px rgba(0,0,0,.12)}
+  .gnb-icon:hover{box-shadow:0 5px 14px rgba(0,0,0,.12);transform:none}
+
+  .hero{height:100svh;min-height:100svh}
+  .hero-bg{inset:0;transform:none!important}
+  .hero-video{inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-light{display:none}
+  .hero-inner{padding-top:92px;justify-content:center}
+  .hero-eyebrow{font-size:24px;margin-bottom:24px}
+  .hero h1{white-space:normal;font-size:clamp(36px,10vw,42px);line-height:1.32;max-width:100%;margin-bottom:22px}
+  .hero-sub{font-size:15px;line-height:1.7;max-width:100%;margin-bottom:34px}
+  .hero-scroll{bottom:22px}
+
+  .brand{height:auto;min-height:0}
+  .brand-inner{height:auto;min-height:0;grid-template-columns:1fr}
+  .brand-copy{padding:76px var(--gutter) 56px}
+  .brand h2{font-size:clamp(31px,8.4vw,38px)}
+  .brand p{font-size:16px;max-width:100%}
+  .brand-img{height:430px;min-height:430px}
+  .brand-img-note{background-position:center center;background-size:cover}
+
+  .product{min-height:760px;padding:76px 0 0;background:#fbf3e8}
+  .product-bg-img{object-fit:cover;object-position:63% bottom}
+  .product-inner{display:block;min-height:760px}
+  .product-copy{position:relative;z-index:2;max-width:100%;padding:0 0 300px}
+  .product h2{font-size:clamp(31px,8.4vw,38px)}
+  .product-sub{font-size:16px;max-width:300px}
+  .feats{gap:14px;max-width:330px}
+  .feat{grid-template-columns:24px 1fr;gap:12px}
+  .p-cta{margin-top:44px}
+  .product-vis{display:none}
+
+  .promise{padding:80px 0}
+  .promise-head{margin-bottom:44px}
+  .promise-head h2{font-size:clamp(31px,8.4vw,38px)}
+  .promise-grid{grid-template-columns:1fr;border-top:1px solid var(--ink-200)}
+  .pc{padding:42px 20px;border-right:none;border-bottom:1px solid var(--ink-200)}
+  .pc:last-child{border-bottom:none}
+  .ic-wrap{width:118px;height:118px;margin-bottom:22px}
+
+  .brix{padding:76px 0 86px;overflow:hidden}
+  .brix-inner{grid-template-columns:1fr;gap:36px}
+  .brix-desc{max-width:100%}
+  .brix-vis{aspect-ratio:auto;min-height:260px;overflow:hidden;border-radius:0}
+  .brix-hero-img{position:relative;right:auto;top:auto;width:100%;max-width:100%;height:auto;transform:none;margin:0 auto}
+
+  .review{padding:80px 0}
+  .review-head{display:block;margin-bottom:42px}
+  .review-head h2{font-size:clamp(31px,8.4vw,38px)}
+  .review-head p{white-space:normal;max-width:100%;font-size:15px}
+  .rating{text-align:left;margin-top:34px;max-width:100%}
+  .rating .rn{font-size:46px}
+  .rev-track{grid-template-columns:1fr;gap:18px}
+  .rev-card{padding:26px 22px}
+  .rev-card:hover{transform:translate3d(0,-8px,0) scale(1.025)}
+  .rev-txt{font-size:22px;min-height:auto}
+
+  .cta{height:700px;min-height:700px;max-height:none;background-size:cover;background-position:center bottom}
+  .cta-inner{height:700px;min-height:700px;align-items:flex-start;padding-top:78px}
+  .cta-copy{max-width:100%}
+  .cta h2{font-size:clamp(25px,6.4vw,31px);line-height:1.25;margin:18px 0 20px}
+  .cta h2 .line{white-space:nowrap}
+  .cta p{font-size:15px;max-width:315px;margin-bottom:72px}
+  .cta-btns{gap:10px}
+  .cta-btns .btn{padding:14px 20px;font-size:14px}
+
+  footer{padding:64px var(--gutter) 42px;min-height:auto}
+  .foot-grid{grid-template-columns:minmax(0,1fr);gap:34px;column-gap:0;width:100%;min-width:0}
+  .foot-brand,.foot-col,.foot-address,.foot-info,.foot-info .nowrap{width:100%;max-width:100%;min-width:0}
+  .foot-logo{width:110px;margin-bottom:34px}
+  .foot-address{font-size:15px;margin-bottom:28px}
+  .foot-info{font-size:13px}
+  .foot-info .nowrap{white-space:normal}
+  .foot-col h6{font-size:20px;margin-bottom:18px}
+  .foot-col ul{gap:12px}
+  .foot-social{margin-top:24px}
+  .foot-btm{margin-top:48px;align-items:flex-start;flex-direction:column}
+  .foot-btm .copyr{white-space:normal;font-size:13px}
+  .foot-meta{justify-content:flex-start;gap:14px 22px;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -484,7 +579,7 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
   <div class="review-head">
     <div class="rv">
       <span class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="#4f6b2f"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg> REAL REVIEW</span>
-      <h2>고객님들의 솔직한 후기</h2>
+      <h2>고객님들의<br>솔직한 후기</h2>
       <p>베노리카 꿀 고구마를 드신 고객님들의 진심 어린 이야기를 전해드립니다.</p>
     </div>
     <div class="rating rv d1">
