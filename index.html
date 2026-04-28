@@ -273,10 +273,10 @@ img{display:block;max-width:100%}
 .cta-div .cl{flex:1;height:1px;background:var(--ink-200)}
 
 /* ════════════ FOOTER ════════════ */
-footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
-.foot-grid{display:grid;grid-template-columns:minmax(420px,1.85fr) repeat(4,minmax(150px,1fr));column-gap:84px;align-items:start}
+footer{background:#f9f9f9;padding:124px clamp(56px,4.1667vw,80px) 92px;border-top:0;min-height:740px}
+.foot-grid{display:grid;grid-template-columns:minmax(420px,1fr) repeat(3,130px) 260px;column-gap:84px;align-items:start;width:100%;max-width:1760px;margin:0 auto}
 .foot-brand{max-width:560px}
-.foot-logo{width:157px;height:auto;display:block;margin-bottom:88px}
+.foot-logo{width:157px;height:auto;display:block;margin-bottom:56px}
 .foot-address{font-size:16px;line-height:1.65;font-weight:700;color:#111;margin-bottom:46px}
 .foot-info{display:grid;gap:5px;font-size:14px;line-height:1.5;color:#111;max-width:none}
 .foot-info .nowrap{white-space:nowrap}
@@ -288,7 +288,7 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
 .foot-social{display:flex;gap:14px;margin-top:38px}
 .foot-social a{width:40px;height:40px;border-radius:50%;display:block}
 .foot-social img{width:40px;height:40px;display:block}
-.foot-btm{margin-top:86px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.foot-btm{max-width:1760px;margin:86px auto 0;display:flex;justify-content:space-between;align-items:center;gap:24px}
 .foot-btm .copyr{font-size:14px;color:#111;white-space:nowrap}
 .foot-meta{display:flex;gap:44px;font-size:14px;color:#999;flex-wrap:wrap;justify-content:flex-end}
 .foot-meta a{color:#999}
@@ -308,7 +308,7 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
 .hero-bg{inset:-28px}
 .hero-bg::before{display:none}
 .hero-bg::after{z-index:1;pointer-events:none}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
 @media(max-width:767px){.gnb-logo{width:103px;height:70px;flex-basis:103px}}
 
 /* 1920 baseline ratio. Product/CTA keep full images; hero/brix keep the intended full-bleed impact. */
@@ -335,11 +335,15 @@ footer{background:#f9f9f9;padding:124px 80px 92px;border-top:0;min-height:740px}
 }
 @media(min-width:1200px) and (max-width:1599px){
   footer{padding:100px 56px 72px}
-  .foot-grid{grid-template-columns:minmax(320px,1.45fr) repeat(4,minmax(112px,1fr));column-gap:42px}
+  .foot-grid{grid-template-columns:minmax(320px,1.45fr) repeat(4,minmax(112px,1fr));column-gap:42px;max-width:none}
   .foot-brand{max-width:440px}
   .foot-logo{width:140px}
+  .foot-logo{margin-bottom:56px}
   .foot-col h6{font-size:20px}
   .foot-col li,.foot-info,.foot-btm .copyr,.foot-meta{font-size:13px}
+}
+@media(min-width:1800px){
+  .foot-grid{grid-template-columns:minmax(420px,1fr) repeat(3,130px) 260px;column-gap:120px}
 }
 
 /* Mobile layout repair */
@@ -729,20 +733,31 @@ if (h1) {
 const heroEl = document.querySelector('.hero');
 const hLight = document.getElementById('hLight');
 const heroBg = document.querySelector('.hero-bg');
+const heroVideo = document.querySelector('.hero-video');
 let phx=0,phy=0,chx=0,chy=0;
 heroEl.addEventListener('mousemove', e => {
   const r = heroEl.getBoundingClientRect();
   hLight.style.left = (e.clientX - r.left) + 'px';
   hLight.style.top  = (e.clientY - r.top)  + 'px';
-  phx = (e.clientX / innerWidth  - .5) * 20;
-  phy = (e.clientY / innerHeight - .5) * 14;
+  if (!heroVideo) {
+    phx = (e.clientX / innerWidth  - .5) * 20;
+    phy = (e.clientY / innerHeight - .5) * 14;
+  }
 }, { passive: true });
 heroEl.addEventListener('mouseleave', () => { hLight.style.left = '-9999px'; phx=0; phy=0; });
-(function pl() {
-  chx += (phx - chx) * .055; chy += (phy - chy) * .055;
-  heroBg.style.transform = `translate(${chx}px,${chy}px)`;
-  requestAnimationFrame(pl);
-})();
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.playsInline = true;
+  heroVideo.setAttribute('playsinline', '');
+  heroVideo.play().catch(() => {});
+  heroBg.style.transform = 'none';
+} else {
+  (function pl() {
+    chx += (phx - chx) * .055; chy += (phy - chy) * .055;
+    heroBg.style.transform = `translate(${chx}px,${chy}px)`;
+    requestAnimationFrame(pl);
+  })();
+}
 
 /* ── Reveal IO ── */
 const rvIO = new IntersectionObserver(es => es.forEach(e => {
